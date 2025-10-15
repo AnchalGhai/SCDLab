@@ -3,10 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace SCD_EF_LAB.Model.Entities
 {
-    internal class Enrollment
+    [Table("Enrollments")]
+    public class Enrollment
     {
+        [Column("id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Column("student_id")]
+        public int StudentId { get; set; }
+        public Student Student { get; set; } = null!;
+
+        [Column("course_id")]
+        public int CourseId { get; set; }
+        public Course Course { get; set; } = null!;
+
+        [Column("grade")]
+        public string? Grade { get; set; }
     }
 }
